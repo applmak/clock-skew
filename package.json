@@ -1,0 +1,23 @@
+{
+  "name": "clock-skew",
+  "version": "0.1.0",
+  "description": "A library that can return a time, adjusted by some reference clock.",
+  "main": "clock_skew.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "karma start --single-run"
+  },
+  "author": "Matt Handley <applmak@google.com>",
+  "license": "Apache 2.0",
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "karma": "^0.12.32",
+    "karma-chrome-launcher": "^0.1.12",
+    "karma-mocha": "^0.1.10",
+    "karma-requirejs": "^0.2.2",
+    "mocha": "^2.2.5",
+    "requirejs": "^2.1.17"
+  }
+}

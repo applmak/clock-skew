@@ -18,6 +18,8 @@
     "karma-mocha": "^0.1.10",
     "karma-requirejs": "^0.2.2",
     "mocha": "^2.2.5",
-    "requirejs": "^2.1.17"
+  },
+  "dependencies": {
+    "requirejs": "^2.1.18"
   }
 }

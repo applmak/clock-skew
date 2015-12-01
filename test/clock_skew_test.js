@@ -12,10 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
     
-define(['lib/clock_skew', 'chai'], function(clockSkew, chai) {
+define(['lib/clock_skew', 'chai'], function(clockSkewLib, chai) {
   describe('clock skew', function() {
-    var expect;
+    var expect, clockSkew;
     beforeEach(function() {
+      clockSkew = clockSkewLib({smear: 5000});
       clockSkew.enterTestingMode();
       clockSkew.setNow(0);
       expect = chai.expect;
@@ -68,13 +69,13 @@ define(['lib/clock_skew', 'chai'], function(clockSkew, chai) {
       expect(clockSkew.getTime()).to.equal(8720);
       advanceTime(1000);
       expect(clockSkew.getTime()).to.equal(10000);
-      // Holy camole! The server is slower than us, and sent a time of 0.
+      // Holy camole! The server is WAY slower than us, and sent a time of 0.
       clockSkew.adjustTimeByReference(0);
-      // Local time doesn't change right away.
-      expect(clockSkew.getTime()).to.equal(10000);
-      // But when we advance, time goes backward!.
+      // We immediately fix our skew.
+      expect(clockSkew.getTime()).to.equal(0);
+      // When we advance, time goes forward again.
       advanceTime(1000);
-      expect(clockSkew.getTime()).to.equal(9000);
+      expect(clockSkew.getTime()).to.equal(1000);
       advanceTime(4000);
       expect(clockSkew.getTime()).to.equal(5000);
       // Until we are again in lockstep

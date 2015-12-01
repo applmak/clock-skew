@@ -12,18 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
     
-define(['lib/clock_skew', 'chai', 'lib/now'], function(clockSkew, chai, now) {
+define(['lib/clock_skew', 'chai'], function(clockSkew, chai) {
   describe('clock skew', function() {
     var expect;
     beforeEach(function() {
-      now.enterTestingMode();
-      now.set(0);
+      clockSkew.enterTestingMode();
+      clockSkew.setNow(0);
       expect = chai.expect;
       clockSkew.resetForTest();
     });
     
     function advanceTime(opt_amount) {
-      now.set((opt_amount || 1) + now.get());
+      clockSkew.setNow((opt_amount || 1) + clockSkew.getNowForTesting());
     };
     it('returns a 0 time until a reference is set', function() {
       expect(clockSkew.getTime()).to.equal(0);

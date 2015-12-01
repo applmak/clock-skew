@@ -10,7 +10,8 @@
     "test": "karma start --single-run"
   },
   "author": "Matt Handley <applmak@google.com>",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
+  "repository": "applmak/clock-skew",
   "devDependencies": {
     "chai": "^2.3.0",
     "karma": "^0.12.32",

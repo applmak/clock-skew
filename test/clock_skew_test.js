@@ -90,5 +90,29 @@ define(['lib/clock_skew', 'chai'], function(clockSkewLib, chai) {
       // Lock step.
       expect(clockSkew.getTime()).to.equal(3000);
     });
+    it('time within the lateTimeResetAmount smears', function () {
+      // Initial set up.
+      clockSkew.adjustTimeByReference(0);
+      // Now, let's advance normal time.
+      advanceTime(1000);
+      expect(clockSkew.getTime()).to.equal(1000);
+      // Now, let's pretend that the server's clock is slower, and only ticks 500ms.
+      clockSkew.adjustTimeByReference(500);
+      // Now, when we tick a whole second, we'll adjust our timing by -100ms.
+      advanceTime(1000);
+      expect(clockSkew.getTime()).to.equal(1900);
+      advanceTime(1000);
+      expect(clockSkew.getTime()).to.equal(2800);
+      advanceTime(1000);
+      expect(clockSkew.getTime()).to.equal(3700);
+      advanceTime(1000);
+      expect(clockSkew.getTime()).to.equal(4600);
+      advanceTime(1000);
+      expect(clockSkew.getTime()).to.equal(5500);
+      // Now, suddenly, the server resets back to 0.
+      clockSkew.adjustTimeByReference(0);
+      // Because our delta is > -SMEAR_DURATION, we just reset.
+      expect(clockSkew.getTime()).to.equal(0);
+    });
   });
 });

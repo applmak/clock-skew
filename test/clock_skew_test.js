@@ -14,17 +14,17 @@
     
 define(['lib/clock_skew', 'chai'], function(clockSkewLib, chai) {
   describe('clock skew', function() {
-    var expect, clockSkew;
+    let expect, clockSkew, now = 0;
     beforeEach(function() {
       clockSkew = clockSkewLib({smear: 5000});
-      clockSkew.enterTestingMode();
-      clockSkew.setNow(0);
       expect = chai.expect;
       clockSkew.resetForTest();
+      now = 0;
+      clockSkew.enterTestingMode(() => now);
     });
     
     function advanceTime(opt_amount) {
-      clockSkew.setNow((opt_amount || 1) + clockSkew.getNowForTesting());
+      now += opt_amount || 1;
     };
     it('returns a 0 time until a reference is set', function() {
       expect(clockSkew.getTime()).to.equal(0);

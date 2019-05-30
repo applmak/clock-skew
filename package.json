@@ -1,6 +1,6 @@
 {
   "name": "clock-skew",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "A library that can return a time, adjusted by some reference clock.",
   "main": "clock_skew.js",
   "directories": {
@@ -20,6 +20,5 @@
     "mocha": "^6.1.4",
     "release-it": "^12.2.2"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

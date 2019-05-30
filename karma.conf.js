@@ -11,7 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-    
+
 // Karma configuration
 // Generated on Fri May 22 2015 13:55:20 GMT-0500 (CDT)
 
@@ -24,15 +24,14 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'requirejs'],
+    frameworks: ['mocha'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      'test-main.js',
-      {pattern: 'lib/**/*.js', included: false},
-      {pattern: 'test/**/*_test.js', included: false},
-      {pattern: 'node_modules/chai/chai.js', included: false},
+      {pattern: 'lib/**/*.js', type: 'module'},
+      {pattern: 'test/**/*_test.js', type: 'module'},
+      {pattern: 'node_modules/chai/chai.js'},
     ],
 
 
